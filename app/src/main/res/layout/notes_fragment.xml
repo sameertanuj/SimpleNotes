@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.AddNotesFragment"
+>
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/add_notes_toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/black"
+            android:elevation="10sp"
+            android:background="@color/colorPrimary" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            style="@style/FullWidthEditText"
+            android:id="@+id/note_title" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="@string/title"
+            android:textSize="30sp" android:importantForAutofill="no" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/add_notes_toolbar"
+            tools:targetApi="o"/>
+    <EditText
+            style="@style/FullWidthEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/note_description"
+            android:hint="@string/note"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@+id/note_title" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" tools:targetApi="o"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

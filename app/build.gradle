@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE' // will not include NOTICE file
+        exclude 'META-INF/LICENSE' // will not include LICENSE file
+        exclude 'META-INF/notice'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+    sourceSets {
+        final String SHARED_TEST_DIR = 'src/common-test/java'
+        test {
+            java.srcDirs += SHARED_TEST_DIR
+        }
+        androidTest {
+            java.srcDirs += SHARED_TEST_DIR
+        }
+    }
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+}
+
+dependencies {
+    implementation project(':base')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':base')
+    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha09"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // use kapt for Kotlin
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
+
+    implementation "android.arch.paging:runtime:1.0.1"
+
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'
+
+    implementation 'jp.wasabeef:richeditor-android:1.2.2'
+
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+
+    // Dagger dependencies
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test:core:1.1.0'
+    testImplementation 'org.mockito:mockito-core:2.19.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+
+}
